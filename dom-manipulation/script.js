@@ -17,11 +17,35 @@ function showRandomQuote() {
   `;
 }
 
-// Attach event listener to button
-document.getElementById("newQuote").addEventListener("click", showRandomQuote);
+// Function to create the Add Quote form dynamically
+function createAddQuoteForm() {
+  const formContainer = document.createElement("div");
 
-// Show one quote immediately when the page loads
-showRandomQuote();
+  // Input for quote text
+  const quoteInput = document.createElement("input");
+  quoteInput.id = "newQuoteText";
+  quoteInput.type = "text";
+  quoteInput.placeholder = "Enter a new quote";
+
+  // Input for quote category
+  const categoryInput = document.createElement("input");
+  categoryInput.id = "newQuoteCategory";
+  categoryInput.type = "text";
+  categoryInput.placeholder = "Enter quote category";
+
+  // Button to add quote
+  const addButton = document.createElement("button");
+  addButton.textContent = "Add Quote";
+  addButton.addEventListener("click", addQuote);
+
+  // Append inputs + button to form container
+  formContainer.appendChild(quoteInput);
+  formContainer.appendChild(categoryInput);
+  formContainer.appendChild(addButton);
+
+  // Add form to the page (under the Show New Quote button)
+  document.body.appendChild(formContainer);
+}
 
 // Function to add new quotes dynamically
 function addQuote() {
@@ -47,6 +71,14 @@ function addQuote() {
     <small>- ${newQuoteCategory}</small>
   `;
 }
+
+// Attach event listener to button
+document.getElementById("newQuote").addEventListener("click", showRandomQuote);
+
+// Run when page loads
+showRandomQuote();
+createAddQuoteForm(); // dynamically create the form
+
 
 
 
